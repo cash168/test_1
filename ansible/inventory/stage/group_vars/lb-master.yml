@@ -1,0 +1,20 @@
+---
+# lb-master
+vrrp_script:
+  script: "pidof nginx" # service check script, mandatory
+  options: # optional
+    - 'interval 2'
+    - 'fall 2'
+    - 'rise 2'
+
+vrrp_instance:
+  name: LB_77 # vrrp cluster name, mandatory
+  interface: enp0s8 # vrrp cluster communication iface, mandatory
+  state: MASTER # init
+  priority: 200 # priority, set 50 above other members to be elected master. mandatory
+  virtual_router_id: 77 # [1 - 255] vrrp id. mandatory
+  unicast_src_ip: 172.21.12.101 # src ip address for vrrp communication, mandatory
+  unicast_peer: ['172.21.12.102', '172.21.12.103'] # ip address of vrrp cluster peers. mandatory
+  virtual_ipaddress: ['172.21.12.200/24 dev enp0s8'] # virtual ip addresses, mandatory
+#  virtual_routes: ['0.0.0.0/0 via 10.0.255.254 dev eth0'] # virtual routes, optional
+#  notify: '/opt/notify.sh' # script to be run on state change. the script is passer 3 parametrs (TYPE, INSTANCE, STATE). optional 

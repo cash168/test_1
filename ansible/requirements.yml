@@ -1,0 +1,4 @@
+- src: https://github.com/opendigitaleducation/ansible-keepalived.git
+  scm: git
+  version: master
+  name: ansible-keepalived

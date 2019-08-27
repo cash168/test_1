@@ -1,0 +1,1 @@
+../../roles/inventory-py/files/inventory.py

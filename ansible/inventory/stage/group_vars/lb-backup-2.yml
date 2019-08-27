@@ -1,0 +1,20 @@
+---
+# lb-backup
+vrrp_script:
+  script: "pidof nginx"
+  options:
+    - 'interval 2'
+    - 'fall 2'
+    - 'rise 2'
+
+vrrp_instance:
+  name: LB_77
+  interface: enp0s8
+  state: BACKUP
+  priority: 100
+  virtual_router_id: 77
+  unicast_src_ip: 172.21.12.103
+  unicast_peer: ['172.21.12.101', '172.21.12.102']
+  virtual_ipaddress: ['172.21.12.200/24 dev enp0s8']
+#  virtual_routes: ['0.0.0.0/0 via 10.0.255.254 dev enp0s8:']
+#  notify: '/opt/notify.sh'

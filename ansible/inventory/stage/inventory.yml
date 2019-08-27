@@ -1,0 +1,40 @@
+---
+#### YAML inventory file
+
+# the two first lines above are needed for the script
+# to identify the file as an inventory file
+
+## Structure
+# hosts:
+#   - host: <HOSTNAME>
+#     # if needed
+#     hostvars:
+#      key: value
+#     # if needed
+#     limits:
+#       - limit1
+#       - limit2
+
+##########################
+###  Hosts definition  ###
+##########################
+hosts:
+
+  - host: server-1
+    limits: [lb, lb-master]
+
+  - host: server-2
+    limits: [lb, lb-backup-1]
+
+  - host: server-3
+    limits: [lb, lb-backup-2]
+
+  - host: server-4
+    limits: [test]
+
+  - host: server-5
+    limits: [test]
+
+  - host: server-6
+    limits: [test]
+
